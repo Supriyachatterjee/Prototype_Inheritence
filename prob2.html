@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+   function Vehicle(brand,model,speed,fuelType){
+    this.brand = brand;
+    this.model = model;
+    this.speed = speed;
+    this.fuelType = fuelType;
+}
+Vehicle.prototype.accelerate = function(){
+   this.speed = this.speed + 10;
+   return ` Your car speed increase now it is ${this.speed}`;
+}
+Vehicle.prototype.brake = function(){
+   this.speed = this.speed - 10;
+   return ` Your car speed decreased now it is ${this.speed}`;
+}
+Vehicle.prototype.refuel = function(){
+    if(this.fuelType <= 1){
+        return `Your fuel is low`;
+    }
+    else{
+        return `Your are on fuel`;
+    }
+}
+let myVehicle = new Vehicle("TVS","Apache",100,5);
+
+function Car(numberOfWheels){
+    let obj = Object.setPrototypeOf(this,new Vehicle("Maruti","Lxi",120,5));
+    obj.numberOfWheels = numberOfWheels;
+    obj.honk = function(){
+        console.log("Honking........");
+    }
+    return obj;
+}
+let myCar = new Car(4);
+console.log(myCar.accelerate());
+
+function AirPlane(numberOfEngines,hasLandGear){
+    let myPlane = Object.setPrototypeOf(this,new Vehicle("Air-Asia","Airbus 320",500,20) );
+    myPlane.numberOfEngines = numberOfEngines;
+    myPlane.hasLandGear = hasLandGear;
+    myPlane.takeOff = function(){
+        console.log("The Airplane is taking Off");
+    }
+    return myPlane;
+}
+let myPlane = new AirPlane(4,true);
+console.log(myPlane.takeOff());
+</script>
+</html>
